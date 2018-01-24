@@ -7,29 +7,37 @@ class Paddle {
     this.y = y;
     this.width = width;
     this.height = height;
-    courtContext.fillStyle = 'black';
-    this.render = function() {
-      courtContext.fillRect(this.x, this.y, this.width, this.height);
-    };
   }
+  move(distance) {
+    this.distance = distance;
+    this.y += this.distance;
+    if(this.y > court.height - this.height) {
+      this.y = court.height - this.height;
+    } else if(this.y < 0) {
+      this.y = 0;
+    }
+  };
+  render() {
+    courtContext.fillRect(this.x, this.y, this.width, this.height);
+  };
 };
 
 class Player {
   constructor(paddle) {
     this.paddle = paddle;
-    this.render = function() {
-      this.paddle.render()
-    }
   }
+  render() {
+    this.paddle.render()
+  };
 };
 
 class Computer {
   constructor(paddle) {
     this.paddle = paddle;
-    this.render = function() {
-      this.paddle.render()
-    };
   }
+  render() {
+    this.paddle.render()
+  };
 };
 
 class Ball {
@@ -39,16 +47,19 @@ class Ball {
     this.radius = 7;
     this.startAngle = 0;
     this.endAngle = 2 * Math.PI;
-    this.render = function () {
-      courtContext.beginPath();
-      courtContext.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, this.counterClockwise);
-      courtContext.lineWidth = 10;
-      courtContext.strokeStyle = 'red';
-      courtContext.stroke();
-      courtContext.closePath();
-    };
   }
+  render() {
+    courtContext.beginPath();
+    courtContext.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, this.counterClockwise);
+    courtContext.lineWidth = 10;
+    courtContext.strokeStyle = 'red';
+    courtContext.stroke();
+    courtContext.closePath();
+  };
 };
+
+var animate = window.requestAnimationFrame ||
+              function(callback) { window.setTimeout(callback, 1000/60) };
 
 var player = new Player(
   new Paddle(1080, 300, 10, 100)
@@ -66,6 +77,20 @@ function render() {
   ball.render();
 }
 
-window.onload = function() {
+function step() {
+  courtContext.clearRect(0, 0, 1100, 700);
   render();
+  animate(step);
+}
+
+window.addEventListener('keydown', function(event) {
+    if (event.keyCode === 40) {
+        player.paddle.move(30);
+    } else if (event.keyCode === 38) {
+        player.paddle.move(-30);
+    }
+});
+
+window.onload = function() {
+  step();
 };
