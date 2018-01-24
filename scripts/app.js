@@ -22,6 +22,7 @@ function step() {
   courtContext.clearRect(0, 0, 1100, 700);
   render();
   ball.move();
+  computer.update(ball);
   animate(step);
 }
 
