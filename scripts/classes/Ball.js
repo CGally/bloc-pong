@@ -46,7 +46,7 @@ class Ball {
       this.speedY *= Math.random() + 1;
       this.speedX *= -1.00001;
     }
-    if(ball.x > court.width + 500) {
+    if(ball.x > court.width + 300) {
       computer.score += 1;
       ball.x = court.width / 2;
       ball.y = court.height / 2;
@@ -55,7 +55,7 @@ class Ball {
       ball.endAngle = 2 * Math.PI;
       ball.speedX = (Math.round(Math.random()) * 2 - 1) * (Math.random() * 10 + 2);
       ball.speedY = (Math.round(Math.random()) * 2 - 1) * (Math.random() * 5);
-    } else if(ball.x < 0 - 500) {
+    } else if(ball.x < 0 - 300) {
       player.score += 1;
       ball.x = court.width / 2;
       ball.y = court.height / 2;

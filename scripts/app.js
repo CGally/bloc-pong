@@ -19,11 +19,19 @@ function render() {
 }
 
 function step() {
-  courtContext.clearRect(0, 0, 1100, 700);
-  render();
-  ball.move();
-  computer.update(ball);
-  animate(step);
+  if(computer.score == 11) {
+    document.getElementById("comp").textContent = 'Computer score: ' + computer.score;
+    document.getElementById("game-over").style.display = 'block';
+  } else if(player.score == 11) {
+    document.getElementById("playa").textContent = 'Player score: ' + player.score;
+    document.getElementById("winner").style.display = 'block';
+  } else {
+    courtContext.clearRect(0, 0, 1100, 700);
+    render();
+    ball.move();
+    computer.update(ball);
+    animate(step);
+  }
 }
 
 window.addEventListener('keydown', function(event) {

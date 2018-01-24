@@ -18,6 +18,18 @@ canvas {
     padding-right: 0;
 }
 
+#game-over {
+  display: none;
+  font-size: 100px;
+  text-align: center;
+}
+
+#winner {
+  display: none;
+  font-size: 100px;
+  text-align: center;
+}
+
 #comp {
   font-size: 25px;
   text-align: center;
