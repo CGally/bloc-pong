@@ -1,6 +1,6 @@
 var court = document.getElementById("court");
 var courtContext = court.getContext("2d");
-
+var mySound = new buzz.sound("/sounds/laser.wav");
 var player = new Player(
   new Paddle(1080, 300, 10, 100)
 );
