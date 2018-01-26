@@ -29,7 +29,7 @@ function countDown() {
     timer.style.display = 'block';
     timer.textContent = count;
     if(count <= 0) {
-      stop = 1;
+      stop = false;
       timer.style.display = 'none';
       clearInterval(serveCount)
     }
@@ -40,7 +40,7 @@ function serve() {
     player.paddle.y = (court.height / 2) - (player.paddle.height / 2);
     computer.paddle.y = (court.height / 2) - (computer.paddle.height / 2);
     render();
-    stop = 0;
+    stop = true;
     count = 4;
     setTimeout(function() {step()}, 4000);
     serveCount = setInterval(function() {countDown()}, 1000);
@@ -61,11 +61,9 @@ function step() {
     playa.textContent = 'Player score: ' + player.score;
     winner.style.display = 'block';
     start.style.display = 'block';
-  } else if(player.scored === true) {
+  } else if(player.scored === true || computer.scored === true) {
     serve();
     player.scored = false;
-  } else if(computer.scored === true) {
-    serve();
     computer.scored = false;
   } else {
     courtContext.clearRect(0, 0, 1100, 700);
@@ -94,11 +92,11 @@ function gameStart() {
 
 window.addEventListener('keydown', function(event) {
   if (event.keyCode === 40) {
-    if(stop === 1) {
+    if(stop === false) {
       player.paddle.move(50);
     }
   } else if (event.keyCode === 38) {
-    if(stop === 1) {
+    if(stop === false) {
       player.paddle.move(-50);
     }
   }
