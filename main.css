@@ -2,12 +2,6 @@ body {
   background-color: darkgray;
 }
 
-h1 {
-  color: white;
-  font-size: 48px;
-  text-align: center;
-}
-
 canvas {
     background-color: lightgreen;
     display: block;
@@ -21,13 +15,23 @@ canvas {
 #game-over {
   display: none;
   font-size: 100px;
+  left: 50%;
+  position: fixed;
   text-align: center;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 #winner {
   display: none;
   font-size: 100px;
+  left: 50%;
+  position: fixed;
   text-align: center;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 #comp {
@@ -39,4 +43,13 @@ canvas {
   font-size: 25px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+#time {
+  font-size: 100px;
+  left: 50%;
+  position: fixed;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
