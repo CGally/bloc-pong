@@ -5,8 +5,10 @@ const playa = document.getElementById("playa");
 const gameOver = document.getElementById("game-over");
 const winner = document.getElementById("winner");
 const timer = document.getElementById("time")
+const start = document.getElementById("start")
+
 var mySound = new buzz.sound("/sounds/laser.wav");
-var stop;
+
 var player = new Player(
   new Paddle(1080, 300, 10, 100)
 );
@@ -15,8 +17,9 @@ var computer = new Computer(
 );
 var ball = new Ball();
 
-var serveCount = setInterval(function() {countDown()}, 1000);
-var count = 4;
+var serveCount;
+var count;
+var stop;
 
 var animate = window.requestAnimationFrame ||
               function(callback) { window.setTimeout(callback, 1000/60) };
@@ -32,6 +35,15 @@ function countDown() {
     }
 };
 
+function serve() {
+    courtContext.clearRect(0, 0, 1100, 700);
+    render();
+    stop = 0;
+    count = 4;
+    setTimeout(function() {step()}, 4000);
+    serveCount = setInterval(function() {countDown()}, 1000);
+};
+
 function render() {
   player.render();
   computer.render();
@@ -42,23 +54,16 @@ function step() {
   if(computer.score == 11) {
     comp.textContent = 'Computer score: ' + computer.score;
     gameOver.style.display = 'block';
+    start.style.display = 'block';
   } else if(player.score == 11) {
     playa.textContent = 'Player score: ' + player.score;
     winner.style.display = 'block';
+    start.style.display = 'block';
   } else if(player.scored === true) {
-    courtContext.clearRect(0, 0, 1100, 700);
-    render();
-    count = 4;
-    setTimeout(function() {step()}, 4000);
-    serveCount = setInterval(function() {countDown()}, 1000);
+    serve();
     player.scored = false;
   } else if(computer.scored === true) {
-    courtContext.clearRect(0, 0, 1100, 700);
-    render();
-    stop = 0;
-    count = 4;
-    setTimeout(function() {step()}, 4000);
-    serveCount = setInterval(function() {countDown()}, 1000);
+    serve();
     computer.scored = false;
   } else {
     courtContext.clearRect(0, 0, 1100, 700);
@@ -81,7 +86,23 @@ window.addEventListener('keydown', function(event) {
   }
 });
 
+function gameStart() {
+  courtContext.clearRect(0, 0, 1100, 700);
+  player = new Player(
+    new Paddle(1080, 300, 10, 100)
+  );
+  computer = new Computer(
+    new Paddle(10, 300, 10, 100)
+  );
+  var ball = new Ball();
+  computer.score = 0
+  player.score  = 0
+  gameOver.style.display = 'none';
+  winner.style.display = 'none';
+  start.style.display = 'none';
+  serve();
+};
+
 window.onload = function() {
   render();
-  setTimeout(function() {step()}, 4000);
 };

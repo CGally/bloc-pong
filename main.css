@@ -18,7 +18,7 @@ canvas {
   left: 50%;
   position: fixed;
   text-align: center;
-  top: 45%;
+  top: 35%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -29,7 +29,7 @@ canvas {
   left: 50%;
   position: fixed;
   text-align: center;
-  top: 55%;
+  top: 35%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -50,6 +50,22 @@ canvas {
   left: 50%;
   position: fixed;
   top: 55%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+#start {
+  background-color: #4C3F50;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  left: 50%;
+  position: fixed;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  top: 65%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
