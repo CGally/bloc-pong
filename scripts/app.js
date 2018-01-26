@@ -6,7 +6,7 @@ const gameOver = document.getElementById("game-over");
 const winner = document.getElementById("winner");
 const timer = document.getElementById("time")
 var mySound = new buzz.sound("/sounds/laser.wav");
-
+var stop;
 var player = new Player(
   new Paddle(1080, 300, 10, 100)
 );
@@ -26,6 +26,7 @@ function countDown() {
     timer.style.display = 'block';
     timer.textContent = count;
     if(count <= 0) {
+      stop = 1;
       timer.style.display = 'none';
       clearInterval(serveCount)
     }
@@ -54,6 +55,7 @@ function step() {
   } else if(computer.scored === true) {
     courtContext.clearRect(0, 0, 1100, 700);
     render();
+    stop = 0;
     count = 4;
     setTimeout(function() {step()}, 4000);
     serveCount = setInterval(function() {countDown()}, 1000);
@@ -69,9 +71,13 @@ function step() {
 
 window.addEventListener('keydown', function(event) {
   if (event.keyCode === 40) {
-    player.paddle.move(50);
+    if(stop === 1) {
+      player.paddle.move(50);
+    }
   } else if (event.keyCode === 38) {
-    player.paddle.move(-50);
+    if(stop === 1) {
+      player.paddle.move(-50);
+    }
   }
 });
 
