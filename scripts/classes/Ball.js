@@ -44,15 +44,15 @@ class Ball {
       laserSound.play();
       this.speedX *= -1.00001;
       this.speedY *= Math.random() + 1;
-    } else if (paddleBallColliding(this, computer.paddle)) {
+    } else if (paddleBallColliding(this, opponent.paddle)) {
       laserSound.load();
       laserSound.play();
       this.speedY *= Math.random() + 1;
       this.speedX *= -1.00001;
     }
     if(ball.x > court.width) {
-      computer.score += 1;
-      computer.scored = true;
+      opponent.score += 1;
+      opponent.scored = true;
       ball.x = court.width / 2;
       ball.y = court.height / 2;
       ball.radius = 5;

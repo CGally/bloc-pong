@@ -7,6 +7,9 @@ class Player {
 
   render() {
     playa.textContent = 'Player score: ' + this.score;
+    if(opponent === player2) {
+      comp.textContent = 'Player 2 score: ' + this.score;
+    }
     this.paddle.render()
   };
 };

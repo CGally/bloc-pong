@@ -12,9 +12,17 @@
 <body>
   <div id='game-over'>Game Over. You lost.</div>
   <div id='winner'>Congratulations! You won!</div>
-  <div id='comp'></div>
   <div id='playa'></div>
-  <button id='start' onclick="gameStart()">Start</button>
+  <div id='comp'></div>
+  <div id='modal'>
+    <form name='player'>
+      <p><strong>Select number of players: </strong></p><input type="radio" name="players" checked> 1 (Play against computer) <input type="radio" name="players"> 2 </br>
+    </form>
+    <form name='level'>
+      <p><strong>Select computer opponent difficulty level: </strong></p> <input type="radio" name="difficulty" checked> Begginner <input type="radio" name="difficulty"> Normal <input type="radio" name="difficulty"> Expert </br>
+    </form>
+    <button id='start' onclick="gameStart()">Start</button>
+  </div>
   <div id='time'></div>
   <canvas id="court" width="1100" height="700"></canvas>
   <div id="volume-control">
