@@ -85,7 +85,7 @@ function setOpponent() {
 };
 
 function countDown() {
-  if(player.score === 0 && computer.score === 0) {
+  if(player.score === 0 && opponent.score === 0) {
     beepSound.load();
     beepSound.play();
   }
