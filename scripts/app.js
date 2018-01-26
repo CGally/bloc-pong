@@ -37,6 +37,8 @@ function countDown() {
 
 function serve() {
     courtContext.clearRect(0, 0, 1100, 700);
+    player.paddle.y = (court.height / 2) - (player.paddle.height / 2);
+    computer.paddle.y = (court.height / 2) - (computer.paddle.height / 2);
     render();
     stop = 0;
     count = 4;
@@ -74,20 +76,7 @@ function step() {
   }
 };
 
-window.addEventListener('keydown', function(event) {
-  if (event.keyCode === 40) {
-    if(stop === 1) {
-      player.paddle.move(50);
-    }
-  } else if (event.keyCode === 38) {
-    if(stop === 1) {
-      player.paddle.move(-50);
-    }
-  }
-});
-
 function gameStart() {
-  courtContext.clearRect(0, 0, 1100, 700);
   player = new Player(
     new Paddle(1080, 300, 10, 100)
   );
@@ -102,6 +91,18 @@ function gameStart() {
   start.style.display = 'none';
   serve();
 };
+
+window.addEventListener('keydown', function(event) {
+  if (event.keyCode === 40) {
+    if(stop === 1) {
+      player.paddle.move(50);
+    }
+  } else if (event.keyCode === 38) {
+    if(stop === 1) {
+      player.paddle.move(-50);
+    }
+  }
+});
 
 window.onload = function() {
   render();
