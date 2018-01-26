@@ -69,3 +69,25 @@ canvas {
   transform: translate(-50%, -50%);
   z-index: 2;
 }
+
+#volume-control {
+  left: 50%;
+  position: fixed;
+  text-align: center;
+  top: 87%;
+  transform: translate(-50%, -50%);
+}
+
+#vol {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+#mute {
+  display: none;
+  position: relative;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}

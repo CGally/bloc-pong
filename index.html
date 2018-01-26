@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bloc Pong</title>
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.0/buzz.min.js"></script>
 </head>
 
@@ -16,6 +17,11 @@
   <button id='start' onclick="gameStart()">Start</button>
   <div id='time'></div>
   <canvas id="court" width="1100" height="700"></canvas>
+  <div id="volume-control">
+    <div id='vol' class="icon ion-volume-high"></div>
+    <div id='mute' class="icon ion-volume-mute"></div>
+    <input type="range" id="volume" value="80">
+  </div>
   <script src="scripts/classes/Ball.js"></script>
   <script src="scripts/classes/Player.js"></script>
   <script src="scripts/classes/Computer.js"></script>

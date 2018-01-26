@@ -40,13 +40,13 @@ class Ball {
       return (dx * dx + dy * dy <= ( ball.radius * ball.radius));
     }
     if (paddleBallColliding(this, player.paddle)) {
-      mySound.load();
-      mySound.play();
+      laserSound.load();
+      laserSound.play();
       this.speedX *= -1.00001;
       this.speedY *= Math.random() + 1;
     } else if (paddleBallColliding(this, computer.paddle)) {
-      mySound.load();
-      mySound.play();
+      laserSound.load();
+      laserSound.play();
       this.speedY *= Math.random() + 1;
       this.speedX *= -1.00001;
     }
