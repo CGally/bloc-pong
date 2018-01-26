@@ -19,6 +19,10 @@ var winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 30 });
 var gameSound = new buzz.sound("/sounds/game.mp3", { volume: 30 });
 var currentVolume = 70
 
+var player;
+var player2;
+var computer;
+var ball;
 var opponent;
 var dif;
 var serveCount;
@@ -27,17 +31,6 @@ var stop;
 
 var animate = window.requestAnimationFrame ||
 function(callback) { window.setTimeout(callback, 1000/60) };
-
-var player = new Player(
-  new Paddle(1080, 300, 10, 100)
-);
-var player2 = new Player(
-  new Paddle(10, 300, 10, 100)
-);
-var computer = new Computer(
-  new Paddle(10, 300, 10, 100)
-);
-var ball = new Ball();
 
 function setVolume(percent) {
   if(percent > 0) {
@@ -61,19 +54,21 @@ function setDifficulty() {
 };
 
 function paintBoard() {
-  var player = new Player(
+  player = new Player(
     new Paddle(1080, 300, 10, 100)
   );
   if(document.player.players[1].checked === true) {
-    var player2 = new Player(
+    player2 = new Player(
       new Paddle(10, 300, 10, 100)
     );
   } else {
-    var computer = new Computer(
+    computer = new Computer(
       new Paddle(10, 300, 10, 100)
     );
   }
-  var ball = new Ball();
+  ball = new Ball();
+  playa.textContent = 'Player 1 score: ' + player.score;
+  comp.textContent = 'Player 2 score: ' + computer.score;
 };
 
 function setOpponent() {
@@ -150,14 +145,23 @@ function step() {
     gameSound.load();
     winnerSound.load();
     winnerSound.play();
-    playa.textContent = 'Player score: ' + player.score;
+    playa.textContent = 'Player 1 score: ' + player.score;
     winner.style.display = 'block';
     modal.style.display = 'block';
     start.style.display = 'block';
-  } else if(player.scored === true || computer.scored === true) {
+  } else if(player.scored === true) {
+    playa.textContent = 'Player 1 score: ' + player.score;
     serve();
     player.scored = false;
-    computer.scored = false;
+  } else if(opponent.scored === true) {
+    if(opponent === player2) {
+      comp.textContent = 'Player 2 score: ' + player2.score;
+    } else {
+      comp.textContent = 'Player 2 score: ' + computer.score;
+    }
+    serve();
+    player.scored = false;
+    opponent.scored = false;
   } else {
     courtContext.clearRect(0, 0, 1100, 700);
     render();
@@ -232,5 +236,6 @@ mute.addEventListener('click', function(event) {
 });
 
 window.onload = function() {
+  paintBoard();
   render();
 };

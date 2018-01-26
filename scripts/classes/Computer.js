@@ -24,7 +24,6 @@ class Computer {
     }
   };
   render() {
-    comp.textContent = 'Player 2 score: ' + this.score;
     this.paddle.render()
   };
 };
