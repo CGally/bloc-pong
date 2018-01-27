@@ -78,11 +78,7 @@ function setOpponent() {
   } else {
     opponent = computer
   }
-  if(opponent === player2) {
-    player2.score  = 0
-  } else {
-    computer.score = 0
-  }
+  comp.textContent = 'Player 2 score: ' + opponent.score;
 };
 
 function countDown() {
@@ -185,6 +181,7 @@ function gameStart() {
   setOpponent();
   setDifficulty();
   player.score  = 0
+  opponent.score = 0;
   gameOver.style.display = 'none';
   winner.style.display = 'none';
   start.style.display = 'none';
