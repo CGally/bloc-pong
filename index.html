@@ -10,13 +10,31 @@
 </head>
 
 <body>
+  <div id='instructions'>
+    <h3>Instructions</h3>
+    <p> <strong>Player 1 controls: </strong></br>
+        <strong>Keyboard</strong></br>
+        Up: W</br>
+        Down: S</br>
+        <strong>Mouse</strong></br>
+        Move mouse vertically to move paddle.</br></br>
+        <strong>Player 2 controls: </strong></br>
+        <strong>Keyboard</strong></br>
+        Up: Up arrow</br>
+        Down: Down arrow</br>
+        <strong>Mouse</strong></br>
+        Mouse can only be used for player 1.
+  </div>
   <div id='game-over'>Game Over. You lost.</div>
   <div id='winner'>Congratulations! You won!</div>
-  <div id='playa'></div>
-  <div id='comp'></div>
+    <div id='playa'></div>
+    <div id='comp'></div>
   <div id='modal'>
     <form name='player'>
-      <p><strong>Select number of players: </strong></p><input type="radio" name="players" checked> 1 (Play against computer) <input type="radio" name="players"> 2 </br>
+      <p><strong>Select number of players: </strong></p><input type="radio" name="players" checked> 1 <input type="radio" name="players"> 2 </br>
+    </form>
+    <form name='control'>
+      <p><strong>Select controls (For player 1 only): </strong></p> <input type="radio" name="controls" checked> Keyboard <input type="radio" name="controls"> Mouse <input type="radio" name="controls"> Mouse (Both paddles-1 Player only)</br>
     </form>
     <form name='level'>
       <p><strong>Select computer opponent difficulty level: </strong></p> <input type="radio" name="difficulty" checked> Beginner <input type="radio" name="difficulty"> Normal <input type="radio" name="difficulty"> Expert </br>

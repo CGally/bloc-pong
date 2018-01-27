@@ -7,6 +7,7 @@ const gameOver = document.getElementById("game-over");
 const winner = document.getElementById("winner");
 const timer = document.getElementById("time")
 const modal = document.getElementById("modal")
+const instructions = document.getElementById("instructions")
 const start = document.getElementById("start")
 const volume = document.getElementById("volume")
 const vol = document.getElementById("vol")
@@ -55,15 +56,15 @@ function setDifficulty() {
 
 function paintBoard() {
   player = new Player(
-    new Paddle(1080, 300, 10, 100)
+    new Paddle(10, 300, 10, 100)
   );
   if(document.player.players[1].checked === true) {
     player2 = new Player(
-      new Paddle(10, 300, 10, 100)
+      new Paddle(1080, 300, 10, 100)
     );
   } else {
     computer = new Computer(
-      new Paddle(10, 300, 10, 100)
+      new Paddle(1080, 300, 10, 100)
     );
   }
   ball = new Ball();
@@ -133,12 +134,14 @@ function step() {
       winnerSound.play();
       winner.style.display = 'block';
       modal.style.display = 'block';
+      instructions.style.display = 'block';
       start.style.display = 'block';
     } else {
     loserSound.load();
     loserSound.play();
     gameOver.style.display = 'block';
     modal.style.display = 'block';
+    instructions.style.display = 'block';
     start.style.display = 'block';
     }
   } else if(player.score == 11) {
@@ -148,6 +151,7 @@ function step() {
     playa.textContent = 'Player 1 score: ' + player.score;
     winner.style.display = 'block';
     modal.style.display = 'block';
+    instructions.style.display = 'block';
     start.style.display = 'block';
   } else if(player.scored === true) {
     playa.textContent = 'Player 1 score: ' + player.score;
@@ -185,29 +189,59 @@ function gameStart() {
   winner.style.display = 'none';
   start.style.display = 'none';
   modal.style.display = 'none';
+  instructions.style.display = 'none';
   serve();
 };
 
 window.addEventListener('keydown', function(event) {
-  if (event.keyCode === 40) {
-    if(stop === false) {
-      player.paddle.move(50);
-    }
-  } else if (event.keyCode === 38) {
-    if(stop === false) {
-      player.paddle.move(-50);
+  if(document.control.controls[0].checked === true) {
+    if (event.keyCode === 83) {
+      if(stop === false) {
+        player.paddle.move(50);
+      }
+    } else if (event.keyCode === 87) {
+      if(stop === false) {
+        player.paddle.move(-50);
+      }
     }
   }
 });
 
 window.addEventListener('keydown', function(event) {
-  if (event.keyCode === 83) {
-    if(stop === false) {
-      player2.paddle.move(50);
+  if(document.control.controls[2].checked === false) {
+    if (event.keyCode === 40) {
+      if(stop === false) {
+        player2.paddle.move(50);
+      }
+    } else if (event.keyCode === 38) {
+      if(stop === false) {
+        player2.paddle.move(-50);
+      }
     }
-  } else if (event.keyCode === 87) {
-    if(stop === false) {
-      player2.paddle.move(-50);
+  }
+});
+
+window.addEventListener('mousemove', function(event) {
+  if(document.control.controls[1].checked === true) {
+    player.paddle.y = event.y - 100;
+    if(player.paddle.y > court.height - player.paddle.height) {
+      player.paddle.y = court.height - player.paddle.height;
+    } else if(player.paddle.y < 0) {
+      player.paddle.y = 0;
+    }
+  }
+  if(document.control.controls[2].checked === true) {
+    player.paddle.y = event.y - 100;
+    opponent.paddle.y = event.y - 100;
+    if(opponent.paddle.y > court.height - opponent.paddle.height) {
+      opponent.paddle.y = court.height - opponent.paddle.height;
+    } else if(opponent.paddle.y < 0) {
+      opponent.paddle.y = 0;
+    }
+    if(player.paddle.y > court.height - player.paddle.height) {
+      player.paddle.y = court.height - player.paddle.height;
+    } else if(player.paddle.y < 0) {
+      player.paddle.y = 0;
     }
   }
 });

@@ -4,6 +4,7 @@ body {
 
 canvas {
     background-color: lightgreen;
+    box-shadow: 10px 10px 20px black;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -37,12 +38,15 @@ canvas {
 #comp {
   font-size: 25px;
   margin-bottom: 20px;
-  text-align: center;
+  margin-right: 370px;
+  text-align: right;
 }
 
 #playa {
+  float: left;
   font-size: 25px;
-  text-align: center;
+  margin-left: 370px;
+  text-align: left;
 }
 
 #time {
@@ -54,13 +58,23 @@ canvas {
   z-index: 2;
 }
 
+#instructions {
+  background-color: lightblue;
+  box-shadow: 10px 10px 20px black;
+  padding: 15px 32px;
+  position: fixed;
+  outline: black 5px solid;
+  z-index: 0;
+}
+
 #modal {
   background-color: lightblue;
+  box-shadow: 10px 10px 20px black;
   left: 50%;
   padding: 15px 32px;
   position: fixed;
   outline: black 5px solid;
-  top: 65%;
+  top: 61%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -72,7 +86,6 @@ canvas {
   display: inline-block;
   font-size: 16px;
   margin-top: 25px;
-  margin-bottom: 10px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
