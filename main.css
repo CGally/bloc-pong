@@ -19,7 +19,7 @@ canvas {
   left: 50%;
   position: fixed;
   text-align: center;
-  top: 35%;
+  top: 30%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -30,7 +30,7 @@ canvas {
   left: 50%;
   position: fixed;
   text-align: center;
-  top: 35%;
+  top: 30%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
@@ -71,10 +71,10 @@ canvas {
   background-color: lightblue;
   box-shadow: 10px 10px 20px black;
   left: 50%;
-  padding: 15px 32px;
+  padding: 5px 15px;
   position: fixed;
   outline: black 5px solid;
-  top: 61%;
+  top: 61.5%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
